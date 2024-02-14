@@ -51,26 +51,21 @@
         const audio = document.getElementById("backgroundAudio");
         const muteBtn = document.getElementById("muteButton");
         const playBtn = document.getElementById("playButton");
+        const playBtnImg = playBtn.querySelector("img");
         audio.volume = 0.45; // Establece el volumen al 50%
-
-        muteBtn.addEventListener("click", () => {
-          if (audio.muted) {
-            audio.muted = false;
-            muteBtn.textContent = "Mute";
-          } else {
-            audio.muted = true;
-            muteBtn.textContent = "Unmute";
-          }
-        });
 
         playBtn.addEventListener("click", () => {
           if (audio.paused) {
             audio.play();
-            playBtn.textContent = "Pause";
+            playBtnImg.src = "./pausa.png";
           } else {
             audio.pause();
-            playBtn.textContent = "Play";
+            playBtnImg.src = "./boton-de-play.png";
           }
+        });
+
+        audio.addEventListener("ended", () => {
+          playBtnImg.src = "./boton-de-play.png";
         });
       });
     </script>
@@ -81,8 +76,16 @@
       Tu navegador no soporta audio HTML.
     </audio>
     <div id="audioControl" class="audio-control">
-      <button id="muteButton">Mute</button>
-      <button id="playButton">Play</button>
+      <button id="playButton">
+        <img
+          src="./boton-de-play.png"
+          id="xd"
+          class="button-img"
+          alt="play"
+          width="30"
+          height="30"
+        />
+      </button>
     </div>
     <div id="vanta"></div>
     <main>
